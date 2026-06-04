@@ -69,17 +69,17 @@ Notes: ${form.notes}`;
   };
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); sendWhatsApp(); }} className="grid gap-4">
-      <div className={compact ? "grid sm:grid-cols-2 gap-4" : "grid sm:grid-cols-2 gap-4"}>
-        <Field label="Full Name *"><Input value={form.name} onChange={update("name")} required /></Field>
-        <Field label="Phone Number *"><Input type="tel" value={form.phone} onChange={update("phone")} required /></Field>
-        <Field label="Email Address"><Input type="email" value={form.email} onChange={update("email")} /></Field>
-        <Field label="Company Name"><Input value={form.company} onChange={update("company")} /></Field>
+    <form onSubmit={(e) => { e.preventDefault(); sendWhatsApp(); }} className="grid gap-4 sm:gap-6">
+      <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+        <Field label="Full Name *"><Input value={form.name} onChange={update("name")} required placeholder="John Smith" /></Field>
+        <Field label="Phone Number *"><Input type="tel" value={form.phone} onChange={update("phone")} required placeholder="07575 431292" /></Field>
+        <Field label="Email Address"><Input type="email" value={form.email} onChange={update("email")} placeholder="you@example.com" /></Field>
+        <Field label="Company Name"><Input value={form.company} onChange={update("company")} placeholder="Your Company" /></Field>
         <Field label="Pickup Location *"><Input value={form.pickup} onChange={update("pickup")} placeholder="e.g. Doncaster, DN1" required /></Field>
         <Field label="Delivery Location *"><Input value={form.delivery} onChange={update("delivery")} placeholder="e.g. Edinburgh / Dublin / Paris" required /></Field>
         <Field label="Service Required *">
           <Select value={form.service} onValueChange={(v) => setForm((f) => ({ ...f, service: v }))}>
-            <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
+            <SelectTrigger className="hover:border-orange/50 transition-colors"><SelectValue placeholder="Select a service" /></SelectTrigger>
             <SelectContent>
               {services.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
             </SelectContent>
@@ -97,23 +97,23 @@ Notes: ${form.notes}`;
       {!compact && (
         <Field label="Additional Notes"><Textarea rows={3} value={form.notes} onChange={update("notes")} placeholder="Access, timing, special handling..." /></Field>
       )}
-      <div className="flex flex-col sm:flex-row gap-3 pt-2">
-        <Button type="submit" size="lg" className="bg-[color:var(--whatsapp)] hover:opacity-90 text-white flex-1">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2 sm:pt-4">
+        <Button type="submit" size="lg" className="bg-[color:var(--whatsapp)] hover:opacity-90 hover:shadow-lg text-white flex-1 transition-all duration-200 active:scale-95">
           <MessageCircle className="size-5 mr-2" /> Send via WhatsApp
         </Button>
-        <Button type="button" size="lg" variant="outline" onClick={sendEmail} className="flex-1 border-navy text-navy hover:bg-navy hover:text-white">
+        <Button type="button" size="lg" variant="outline" onClick={sendEmail} className="flex-1 border-navy text-navy hover:bg-navy hover:text-white transition-all duration-200 active:scale-95">
           <Mail className="size-5 mr-2" /> Send via Email
         </Button>
       </div>
-      <p className="text-xs text-muted-foreground text-center">By submitting you'll be connected to {CONTACT.company} on {CONTACT.phoneDisplay}.</p>
+      <p className="text-xs text-muted-foreground text-center mt-2">{CONTACT.company} will reply to {CONTACT.phoneDisplay} within the hour.</p>
     </form>
   );
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="grid gap-1.5">
-      <Label className="text-sm font-medium text-navy">{label}</Label>
+    <div className="grid gap-1.5 sm:gap-2">
+      <Label className="text-xs sm:text-sm font-semibold text-navy tracking-wide">{label}</Label>
       {children}
     </div>
   );
