@@ -1,11 +1,13 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from 'vite'
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
 export default defineConfig({
-  nitro: true,
-  tanstackStart: {
-    server: { 
-      entry: "server",
-      presets: ["vercel"],
+  plugins: [tanstackStart(), react()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
     },
   },
-});
+})

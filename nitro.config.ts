@@ -1,4 +1,9 @@
-export default {
-  presets: ["vercel"],
-};
+import { defineNitroConfig } from 'nitropack/config'
+
+export default defineNitroConfig({
+  presets: ['vercel'],
+  typescript: {
+    strict: true,
+  },
+})
 
