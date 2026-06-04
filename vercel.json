@@ -2,7 +2,6 @@
   "buildCommand": "bun run build",
   "outputDirectory": "dist",
   "devCommand": "bun run dev",
-  "nodeVersion": "20.x",
   "env": {
     "NODE_ENV": "production"
   }
