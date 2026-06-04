@@ -1,0 +1,14 @@
+{
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist",
+  "devCommand": "bun run dev",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "api/[...].ts": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "regions": ["iad1"]
+}
